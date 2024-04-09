@@ -111,7 +111,7 @@ const Main = () => {
 
                 {loader ? (<div className=' d-flex justify-content-center align-items-center' style={{ height: '20rem' }}><div class=" spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
-                </div></div>) : <ul className='mt-5'>
+                </div></div>) : <ul className='mt-5 pt-3'>
 
 
                     {data.map((item, index) => (
