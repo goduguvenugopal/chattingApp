@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css'
 
@@ -59,6 +59,11 @@ const Main = () => {
         setLogin(false)
     }
 
+
+    useEffect(()=>{
+        console.log(formFunc())
+        console.log(getFunc())
+    },[])
     return (
         <>
             {login ? <div className='logincard'>
