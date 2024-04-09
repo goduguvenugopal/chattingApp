@@ -38,6 +38,7 @@ const Main = () => {
             console.log(response.data);
             setText("")
             setPop(true)
+            getFunc()
             setTimeout(() => {
                 setPop(false)
             }, 3000);
@@ -61,8 +62,8 @@ const Main = () => {
 
 
     useEffect(()=>{
-        console.log(formFunc())
-        console.log(getFunc())
+        console.log(formFunc)
+        getFunc()
     },[])
     return (
         <>
