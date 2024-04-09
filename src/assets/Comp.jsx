@@ -3,9 +3,9 @@ import axios from 'axios';
 import '../App.css'
 
 const Main = () => {
-    const [user, setUser] = useState('');
+    
     const [name, setName] = useState('');
-    const [text, setText] = useState('');
+    const [text, setText] = useState(" ");
     const [pop, setPop] = useState(false);
     const [pop1, setPop1] = useState(false);
     const [loader, setLoader] = useState(false);
@@ -56,7 +56,7 @@ const Main = () => {
 
     const loginFunc = (e) => {
         e.preventDefault()
-        setUser(name)
+        setText(`${name} : `)
         setLogin(false)
     }
 
@@ -116,7 +116,7 @@ const Main = () => {
 
                     {data.map((item, index) => (
 
-                        <li key={index}><b>{user}</b> : {item.text}</li>
+                        <li key={index}>{item.text}</li>
 
                     ))}
 
