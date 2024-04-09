@@ -1,14 +1,15 @@
 import React from 'react'
 
 import './App.css'
-import Main from './assets/Main'
+import Comp from './assets/Comp'
 
 function App() {
 
 
   return (
     <>
-      <Main />
+      
+      <Comp/>
     </>
   )
 }
