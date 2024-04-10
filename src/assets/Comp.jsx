@@ -52,13 +52,13 @@ const Main = () => {
             console.error(error);
         }
     };
-    
+
     useEffect(() => {
         const text1 = localStorage.getItem("text");
 
         if (text1) {
             const parsedText = JSON.parse(text1);
-
+           setName(parsedText.name)
             setText(`${parsedText.name} : `);
         }
     }, [data])
@@ -85,13 +85,14 @@ const Main = () => {
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
             </div> : ""}
-
-            <div className={login ? " " : "fixed container-fluid"} id='top-card'>
+                 
+            <div className={login ? " " : "fixed container-fluid "} id='top-card'>
                 <h4 className='text-center text-white mt-4'>Chatting App</h4>
-                <div className='' style={{ height: '6rem' }}>
+                
+                <div className='' style={{ height: '5rem' }}>
                     <div className='mt-3 chatcard'>
 
-                        <form onSubmit={formFunc} className='d-flex '>
+                        <form onSubmit={formFunc} className='d-flex ' style={{marginRight:'1rem'}}>
                             <input
                                 required
                                 type='text'
@@ -100,33 +101,33 @@ const Main = () => {
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
                             />
-                            <button type='submit' className='text-white fw-bold btn bg-primary'>Send</button>
+                            <button type='submit' className='text-white fw-bold btn bg-primary ' style={{height:"2.8rem", marginTop:'1px'}}>Send</button>
                         </form>
 
 
                     </div>
-                    {pop && <h5 className='text-center text-white mt-3'>Message sent</h5>}
-                    {pop1 && <h5 className='text-center text-danger mt-3'>Message Not sent</h5>}
+                    {pop && <h6 className='text-center text-white mt-2'>Message sent</h6>}
+                    {pop1 && <h6 className='text-center text-danger mt-2'>Message Not sent</h6>}
 
 
                 </div>
-                <div className='text-center mt-2' style={{ width: '100vw' }}>
-
-                    <button onClick={getFunc} className='btn bg-primary text-white'>Refresh</button>
-                </div><hr className='text-white' />
-                <h4 className='text-white' >Conversation</h4>
-
+                
+                 
+                
             </div>
+            <button id='refresh' onClick={getFunc} className='btn bg-primary text-white'>Refresh</button>
+
+                   
             <div className='container chatlist '>
 
-                {loader ? (<div className=' d-flex justify-content-center align-items-center' style={{ height: '20rem' }}><div class=" spinner-border text-primary" role="status">
+                {loader ? (<div className='pt-5 mt-5 d-flex justify-content-center align-items-center' style={{ height: '20rem' }}><div class=" spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
-                </div></div>) : <ul className='mt-5 pt-4'>
+                </div></div>) : <ul className='mt-5  ' style={{marginRight:'2rem'}}>
 
 
                     {data.map((item, index) => (
 
-                        <li key={index}>{item.text}</li>
+                        <li className='list-text' key={index}>{item.text}</li>
 
                     ))}
 

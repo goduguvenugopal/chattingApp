@@ -1,7 +1,10 @@
 #top-card {
   z-index: 1000;
   background: #e215df;
+  
+  
   padding-bottom: 10px;
+  box-shadow: 0 0 6px rgb(125, 122, 122);
 }
 .chatcard {
   width: 100vw;
@@ -12,9 +15,9 @@
 
 .text-card {
   text-transform:capitalize ;
+  height: 3rem;
   width: 16rem;
-  padding-top: 8px;
-  padding-bottom: 8px;
+ 
   padding-left: 10px;
   margin-right: 5px;
   border-radius: 5px;
@@ -22,12 +25,12 @@
 }
 
 .chatlist {
-  margin-top: 18rem;
+  margin-bottom: 13rem;
 }
 
 .fixed {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100vw;
 }
@@ -53,4 +56,25 @@
   text-transform:capitalize ;
   border: 2px solid rgb(230, 11, 237);
   margin-bottom: 10px;
+ }
+
+ #refresh{
+  position: fixed;
+  right: 0;
+  bottom: 10rem;
+ }
+
+ .list-text{
+  list-style: none;
+  box-shadow: 0 0 6px rgb(154, 152, 152);
+  padding: 10px;
+  margin-top: 15px;
+ 
+  font-family: robot;
+  border-radius: 10px;
+  
+ }
+
+ .list-text:hover{
+  box-shadow: 0 0 8px rgb(216, 17, 160);
  }
