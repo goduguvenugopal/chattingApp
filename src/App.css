@@ -53,6 +53,17 @@ body{
   z-index: 1;
  }
 
+ #login-cont{
+  background-color: white;
+  box-shadow: 0 0 8px rgb(54, 53, 53);
+  padding: 10px;
+  border-radius: 10px;
+  height: 19rem;
+  padding-top: 1rem;
+  width: 23rem;
+  text-align: center;
+
+ }
  .login-text{
   width: 16rem;
   padding-top: 8px;
@@ -67,8 +78,8 @@ body{
 
  #refresh{
   position: fixed;
-  right: 0;
-  bottom: 10rem;
+  right: 5px;
+  bottom: 10.1rem;
  }
 
  .list-text{
