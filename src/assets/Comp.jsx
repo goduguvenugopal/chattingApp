@@ -162,7 +162,7 @@ const Main = () => {
 
                     </div>
                     {pop && <h6 className='text-center text-white mt-2'>Message sent</h6>}
-                    {pop1 && <h6 className='text-center text-danger mt-2'>Message Not sent</h6>}
+                    {pop1 && <h6 className='text-center text-white mt-2'>Message Not sent</h6>}
 
 
                 </div>
