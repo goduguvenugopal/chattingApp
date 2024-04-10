@@ -108,6 +108,18 @@ const Main = () => {
         setDark(true)
     }
 
+    const alertFunc = () =>{
+        const promptData = prompt("Enter The Password to Delete Chat")
+        const DelKey = "121822" 
+        if(promptData === DelKey){
+            deleteFunc()
+        }
+        else{
+            alert("You have Entered Wrong Password")
+        }
+    }
+
+
     useEffect(() => {
         console.log(deleteFunc)
         console.log(formFunc)
@@ -172,7 +184,7 @@ const Main = () => {
                 {del ? <button class="text-white btn bg-primary" type="button" disabled>
                     <span style={{ marginRight: '5px' }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Deleting...
-                </button> : <button ton className='text-white btn bg-primary' onClick={deleteFunc}>Delete</button>
+                </button> : <button ton className='text-white btn bg-primary' onClick={alertFunc}>Delete</button>
                 }
 
 
