@@ -1,6 +1,12 @@
+
+body{
+  background-color: rgb(244, 60, 180);
+}
+
+
 #top-card {
   z-index: 1000;
-  background: #e215df;
+  background-color: rgb(242, 40, 215);
   
   
   padding-bottom: 10px;
@@ -26,6 +32,7 @@
 
 .chatlist {
   margin-bottom: 13rem;
+   
 }
 
 .fixed {
@@ -69,7 +76,7 @@
   box-shadow: 0 0 6px rgb(154, 152, 152);
   padding: 10px;
   margin-top: 15px;
- 
+  background-color:white;
   font-family: robot;
   border-radius: 10px;
   
@@ -77,4 +84,8 @@
 
  .list-text:hover{
   box-shadow: 0 0 8px rgb(216, 17, 160);
+ }
+
+ .ul-card{
+   
  }

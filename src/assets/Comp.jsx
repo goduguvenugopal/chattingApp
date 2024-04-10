@@ -24,7 +24,7 @@ const Main = () => {
         catch (error) {
             alert('Refresh again or Check internet Connection')
             console.log(error)
-            alert('not fetched')
+        
         }
 
     }
@@ -118,11 +118,11 @@ const Main = () => {
             <button id='refresh' onClick={getFunc} className='btn bg-primary text-white'>Refresh</button>
 
                    
-            <div className='container chatlist '>
+            <div className=' chatlist '>
 
-                {loader ? (<div className='pt-5 mt-5 d-flex justify-content-center align-items-center' style={{ height: '20rem' }}><div class=" spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div></div>) : <ul className='mt-5  ' style={{marginRight:'2rem'}}>
+                {loader ? (<div className=' bg-white  d-flex justify-content-center align-items-center' style={{ height: '100vh',width:'100vw' }}><div class=" spinner-border text-primary" role="status">
+                    <span class="visually-hidden ">Loading...</span>
+                </div></div>) : <ul className='container mt-5 ul-card ' >
 
 
                     {data.map((item, index) => (
