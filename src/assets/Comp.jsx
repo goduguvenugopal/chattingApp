@@ -107,6 +107,7 @@ const Main = () => {
         document.body.style.backgroundColor = "black"
         setDark(true)
     }
+// delete chat function 
 
     const alertFunc = () =>{
         const promptData = prompt("Enter The Password to Delete Chat")
