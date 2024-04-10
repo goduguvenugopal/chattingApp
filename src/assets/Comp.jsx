@@ -35,8 +35,8 @@ const Main = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("https://vkzomato-server.onrender.com/employees/add-user", { text });
-            console.log(response.data);
+            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", { text });
+
             setText("")
             setPop(true)
             getFunc()
@@ -59,8 +59,8 @@ const Main = () => {
     const deleteFunc = async () => {
         setDel(true)
         try {
-            const response = await axios.delete("https://vkzomato-server.onrender.com/employees/delete-user")
-            console.log(response.data)
+            await axios.delete("https://vkzomato-server.onrender.com/employees/delete-user")
+
             setDel(false)
             getFunc()
 
@@ -101,29 +101,30 @@ const Main = () => {
     //   theme change function 
     const themefunc1 = () => {
         document.body.style.backgroundColor = "white"
+        document.body.style.color = "black"
         setDark(false)
     }
     const themefunc2 = () => {
         document.body.style.backgroundColor = "black"
+        document.body.style.color = "white"
         setDark(true)
     }
-// delete chat function 
+    // delete chat function 
 
-    const alertFunc = () =>{
+    const alertFunc = () => {
         const promptData = prompt("Enter The Password to Delete Chat")
-        const DelKey = "121822" 
-        if(promptData === DelKey){
+        const DelKey = "121822"
+        if (promptData === DelKey) {
             deleteFunc()
         }
-        else{
+        else {
             alert("You have Entered Wrong Password")
         }
     }
 
 
     useEffect(() => {
-        console.log(deleteFunc)
-        console.log(formFunc)
+
         getFunc()
     }, [])
     return (
@@ -196,13 +197,14 @@ const Main = () => {
                 {loader ? (<div className=' bg-white  d-flex justify-content-center align-items-center' style={{ height: '100vh', width: '100vw' }}><div class=" spinner-border text-primary" role="status">
                     <span class="visually-hidden ">Loading...</span>
                 </div></div>) : <ul className='container mt-5 ul-card ' >
+                    {data.length ? (
+                        data.map((item, index) => (
+                            <li className='list-text' key={index}>{item.text}</li>
+                        ))
+                    ) : (
+                        <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>'Oops' No Chatting History</div>
+                    )}
 
-
-                    {data.map((item, index) => (
-
-                        <li className='list-text' key={index}>{item.text}</li>
-
-                    ))}
 
                 </ul>}
             </div>

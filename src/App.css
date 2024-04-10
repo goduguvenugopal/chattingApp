@@ -1,6 +1,7 @@
 
 body{
   background-color:rgb(235, 53, 177);
+  color: white;
 }
 
 
@@ -88,6 +89,8 @@ body{
   background-color:white;
   font-family: robot;
   border-radius: 10px;
+  color: black;
+  text-transform: capitalize;
   
  }
 
