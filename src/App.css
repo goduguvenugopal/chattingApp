@@ -108,3 +108,10 @@ body{
   justify-content: center;
   cursor: pointer;
  }
+
+ .del-card{
+ position: fixed;
+ left: 3px;
+ bottom: 10.1rem;
+
+ }

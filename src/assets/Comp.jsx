@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../App.css'
 
 const Main = () => {
+    const [del, setDel] = useState(false);
     const [dark, setDark] = useState(false);
     const [name, setName] = useState('');
     const [text, setText] = useState(" ");
@@ -53,6 +54,24 @@ const Main = () => {
         }
     };
 
+    //  delete data method 
+
+    const deleteFunc = async () => {
+        setDel(true)
+        try {
+            const response = await axios.delete("https://vkzomato-server.onrender.com/employees/delete-user")
+            console.log(response.data)
+            setDel(false)
+            getFunc()
+
+        } catch (error) {
+            console.log(error)
+            alert('Try again or Check internet Connection')
+
+        }
+    }
+
+    // localStorage function 
     useEffect(() => {
         const text1 = localStorage.getItem("text");
 
@@ -64,6 +83,8 @@ const Main = () => {
         }
     }, [data])
 
+
+    // login code 
     const loginFunc = (e) => {
         e.preventDefault()
         localStorage.setItem("text", JSON.stringify({ name: name, password: password }))
@@ -77,17 +98,18 @@ const Main = () => {
             alert('You Have Entered Wrong code')
         }
     }
-
-    const themefunc1 = () =>{
+    //   theme change function 
+    const themefunc1 = () => {
         document.body.style.backgroundColor = "white"
         setDark(false)
     }
-    const themefunc2 = () =>{
+    const themefunc2 = () => {
         document.body.style.backgroundColor = "black"
         setDark(true)
     }
 
     useEffect(() => {
+        console.log(deleteFunc)
         console.log(formFunc)
         getFunc()
     }, [])
@@ -136,15 +158,25 @@ const Main = () => {
 
             </div>
             <button id='refresh' onClick={getFunc} className='btn bg-primary text-white'>Refresh</button>
-           
+
             <div className='theme-card'>
-                {dark ?  <span onClick={themefunc1} class="material-symbols-outlined">
-                wb_sunny
-            </span>: <span onClick={themefunc2} class="material-symbols-outlined">
+                {dark ? <span onClick={themefunc1} class="material-symbols-outlined">
+                    wb_sunny
+                </span> : <span onClick={themefunc2} class="material-symbols-outlined">
                     dark_mode
-                </span> }
-                
-                </div>
+                </span>}
+
+            </div>
+
+            <div className='del-card'>
+                {del ? <button class="text-white btn bg-primary" type="button" disabled>
+                    <span style={{ marginRight: '5px' }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Deleting...
+                </button> : <button ton className='text-white btn bg-primary' onClick={deleteFunc}>Delete</button>
+                }
+
+
+            </div>
 
             <div className=' chatlist '>
 
