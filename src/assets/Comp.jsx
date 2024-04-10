@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../App.css'
 
 const Main = () => {
-    
+
     const [name, setName] = useState('');
     const [text, setText] = useState(" ");
     const [pop, setPop] = useState(false);
@@ -52,26 +52,36 @@ const Main = () => {
             console.error(error);
         }
     };
+    
+    useEffect(() => {
+        const text1 = localStorage.getItem("text");
 
+        if (text1) {
+            const parsedText = JSON.parse(text1);
+
+            setText(`${parsedText.name} : `);
+        }
+    }, [data])
 
     const loginFunc = (e) => {
         e.preventDefault()
-        setText(`${name} : `)
+        localStorage.setItem("text", JSON.stringify({ name: name }))
+
         setLogin(false)
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(formFunc)
         getFunc()
-    },[])
+    }, [])
     return (
         <>
             {login ? <div className='logincard'>
- 
+
                 <form onSubmit={loginFunc} className='text-center'>
-                <h4 className='mb-3 text-white'>Welcome To Chatting App</h4>
-                    <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br/>
+                    <h4 className='mb-3 text-white'>Welcome To Chatting App</h4>
+                    <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br />
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
             </div> : ""}
