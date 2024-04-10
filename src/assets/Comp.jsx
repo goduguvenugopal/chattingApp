@@ -202,7 +202,7 @@ const Main = () => {
                             <li className='list-text' key={index}>{item.text}</li>
                         ))
                     ) : (
-                        <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>'Oops' No Chatting History</div>
+                        <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>'Oops' Chat Cleared</div>
                     )}
 
 
