@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../App.css'
 
 const Main = () => {
-
+    const [dark, setDark] = useState(false);
     const [name, setName] = useState('');
     const [text, setText] = useState(" ");
     const [pop, setPop] = useState(false);
@@ -66,18 +66,26 @@ const Main = () => {
 
     const loginFunc = (e) => {
         e.preventDefault()
-        localStorage.setItem("text", JSON.stringify({ name: name , password : password }))
+        localStorage.setItem("text", JSON.stringify({ name: name, password: password }))
 
-         
-        const defaultPass = "asdfgh" 
-        if(password === defaultPass){
+
+        const defaultPass = "asdfgh"
+        if (password === defaultPass) {
             setLogin(false)
         }
-        else{
+        else {
             alert('You Have Entered Wrong code')
         }
     }
 
+    const themefunc1 = () =>{
+        document.body.style.backgroundColor = "white"
+        setDark(false)
+    }
+    const themefunc2 = () =>{
+        document.body.style.backgroundColor = "black"
+        setDark(true)
+    }
 
     useEffect(() => {
         console.log(formFunc)
@@ -88,11 +96,11 @@ const Main = () => {
             {login ? <div className='logincard'>
 
                 <form onSubmit={loginFunc} className='text-cente' id='login-cont'>
-                    <h4 className='mb-3 text-dark'>Welcome To Chatting App</h4><hr/>
+                    <h4 className='mb-3 text-dark'>Welcome To Chatting App</h4><hr />
                     <h5 className=''>Name</h5>
                     <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br />
                     <h5 className=''>Password</h5>
-                   <input type='password' name='password' placeholder='Enter Code' value={password} required maxLength="6" onChange={(e)=>setPassword(e.target.value)} className='login-text'/><br/>
+                    <input type='password' name='password' placeholder='Enter Code' value={password} required maxLength="6" onChange={(e) => setPassword(e.target.value)} className='login-text' /><br />
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
             </div> : ""}
@@ -105,6 +113,7 @@ const Main = () => {
 
                         <form onSubmit={formFunc} className='d-flex ' style={{ marginRight: '1rem' }}>
                             <input
+
                                 required
                                 type='text'
                                 placeholder='Send Message'
@@ -118,7 +127,7 @@ const Main = () => {
 
                     </div>
                     {pop && <h6 className='text-center text-white mt-2'>Message sent</h6>}
-                    {pop1 && <h6 className='text-center text-white mt-2'>Message Not sent</h6>}
+                    {pop1 && <h6 className='text-center text-danger mt-2'>Message Not sent</h6>}
 
 
                 </div>
@@ -127,7 +136,15 @@ const Main = () => {
 
             </div>
             <button id='refresh' onClick={getFunc} className='btn bg-primary text-white'>Refresh</button>
-
+           
+            <div className='theme-card'>
+                {dark ?  <span onClick={themefunc1} class="material-symbols-outlined">
+                wb_sunny
+            </span>: <span onClick={themefunc2} class="material-symbols-outlined">
+                    dark_mode
+                </span> }
+                
+                </div>
 
             <div className=' chatlist '>
 
