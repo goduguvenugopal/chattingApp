@@ -133,9 +133,9 @@ const Main = () => {
 
                 <form onSubmit={loginFunc} className='text-cente' id='login-cont'>
                     <h4 className='mb-3 text-dark'>Welcome To Chatting App</h4><hr />
-                    <h5 className=''>Name</h5>
+                    <h5 className='text-dark'>Name</h5>
                     <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br />
-                    <h5 className=''>Password</h5>
+                    <h5 className='text-dark'>Password</h5>
                     <input type='password' name='password' placeholder='Enter Code' value={password} required maxLength="6" onChange={(e) => setPassword(e.target.value)} className='login-text' /><br />
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
