@@ -73,18 +73,23 @@ const Main = () => {
 
     //    deletebyiduser medthod 
     const delByIdFunc = async (itemId) => {
-        alert(itemId)
-        try {
-            const response = await axios.delete(`https://vkzomato-server.onrender.com/employees/deluserbyid/${itemId}`)
-            if (response.status === 200) {
-                setData(data.filter(item => item.id !== itemId))
-                alert('Chat deleted successfully');
+        if(confirm('Confirm To Delete The Chat')){
+            try {
+ 
+
+                const response = await axios.delete(`https://vkzomato-server.onrender.com/employees/deluserbyid/${itemId}`)
+                if (response.status === 200) {
+                    setData(data.filter(item => item.id !== itemId))
+                    alert('Chat deleted successfully');
+                }
+            }
+            catch (error) {
+                console.log(error)
+                alert('Try again or Check internet Connection')
             }
         }
-        catch (error) {
-            console.log(error)
-            alert('Try again or Check internet Connection')
-        }
+    
+       
     }
 
     // localStorage function 
@@ -217,7 +222,7 @@ const Main = () => {
                         data.map((item, index) => (<> 
                             <li className='list-text' key={index}>{}{item.text}  <span style={{ cursor: 'pointer' }} onClick={() => {
                                 console.log(item)
-                                delByIdFunc(item.id)}} className="material-symbols-outlined del-icon">
+                                delByIdFunc(index + 1)}} className="material-symbols-outlined del-icon">
                                 delete
                             </span>
                              </li>
