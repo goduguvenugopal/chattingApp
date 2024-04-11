@@ -125,8 +125,9 @@ body{
 .del-icon{
   font-size: 20px;
   margin-top: 3px;
+  color: red;
 }
 
  .del-icon:hover{
-color: red;
+color:blue ;
  }
