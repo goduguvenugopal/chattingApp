@@ -121,3 +121,12 @@ body{
  bottom: 10.1rem;
 
  }
+
+.del-icon{
+  font-size: 20px;
+  margin-top: 3px;
+}
+
+ .del-icon:hover{
+color: red;
+ }

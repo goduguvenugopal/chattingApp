@@ -199,7 +199,7 @@ const Main = () => {
                 </div></div>) : <ul className='container mt-5 ul-card ' >
                     {data.length ? (
                         data.map((item, index) => (
-                            <li   className='list-text' key={index}>{item.text} <span style={{cursor:'pointer'}} class="material-symbols-outlined">
+                            <li   className='list-text' key={index}>{item.text} <span style={{cursor:'pointer'}} class="material-symbols-outlined del-icon">
                             delete
                             </span></li>
                         ))
