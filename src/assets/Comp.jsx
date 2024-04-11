@@ -71,6 +71,21 @@ const Main = () => {
         }
     }
 
+    //    deletebyiduser medthod 
+    const delByIdFunc = async (itemId) => {
+        try {
+           const response =  await axios.delete(`https://vkzomato-server.onrender.com/employees/deluserbyid/${itemId}`)
+            if (response.status === 200) {
+                setData(data.filter(item => item.id !== itemId))
+                alert('Chat deleted successfully');
+            } 
+        } 
+        catch(error) {
+            console.log(error)
+            alert('Try again or Check internet Connection')
+        }
+    }
+
     // localStorage function 
     useEffect(() => {
         const text1 = localStorage.getItem("text");
@@ -174,17 +189,17 @@ const Main = () => {
             <button id='refresh' onClick={getFunc} className='btn bg-primary text-white'>Refresh</button>
 
             <div className='theme-card'>
-                {dark ? <span onClick={themefunc1} class="material-symbols-outlined">
+                {dark ? <span onClick={themefunc1} className="material-symbols-outlined">
                     wb_sunny
-                </span> : <span onClick={themefunc2} class="material-symbols-outlined">
+                </span> : <span onClick={themefunc2} className="material-symbols-outlined">
                     dark_mode
                 </span>}
 
             </div>
 
             <div className='del-card'>
-                {del ? <button class="text-white btn bg-primary" type="button" disabled>
-                    <span style={{ marginRight: '5px' }} class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {del ? <button className="text-white btn bg-primary" type="button" disabled>
+                    <span style={{ marginRight: '5px' }} className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Deleting...
                 </button> : <button ton className='text-white btn bg-primary' onClick={alertFunc}>Delete</button>
                 }
@@ -194,12 +209,12 @@ const Main = () => {
 
             <div className=' chatlist '>
 
-                {loader ? (<div className=' bg-white  d-flex justify-content-center align-items-center' style={{ height: '100vh', width: '100vw' }}><div class=" spinner-border text-primary" role="status">
-                    <span class="visually-hidden ">Loading...</span>
+                {loader ? (<div className=' bg-white  d-flex justify-content-center align-items-center' style={{ height: '100vh', width: '100vw' }}><div className=" spinner-border text-primary" role="status">
+                    <span className="visually-hidden ">Loading...</span>
                 </div></div>) : <ul className='container mt-5 ul-card ' >
                     {data.length ? (
-                        data.map((item, index) => (
-                            <li className='list-text' key={index}>{item.text} <span style={{ cursor: 'pointer' }} class="material-symbols-outlined del-icon">
+                        data.map((item) => (
+                            <li className='list-text' key={item.id}>{item.text} <span style={{ cursor: 'pointer' }} onClick={()=> delByIdFunc(item.id)} className="material-symbols-outlined del-icon">
                                 delete
                             </span></li>
                         ))
