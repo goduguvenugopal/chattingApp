@@ -57,7 +57,7 @@ body{
   box-shadow: 0 0 8px rgb(54, 53, 53);
   padding: 10px;
   border-radius: 10px;
-  height: 19rem;
+  padding-bottom: 1.5rem;
   padding-top: 1rem;
   width: 20rem;
   text-align: center;

@@ -96,7 +96,8 @@ const Main = () => {
     }
     //  delete privacy function 
     const privacyFunc = (itemId) => {
-         if (priKey === name) {
+        const promptKey = prompt("Enter Your Privicy Code")
+        if (priKey === promptKey) {
             delByIdFunc(itemId)
         } else {
             alert('wrong')
@@ -115,7 +116,7 @@ const Main = () => {
             const parsedText = JSON.parse(text1);
             setName(parsedText.name)
             setPassword(parsedText.password)
-            setPriKey(parsedText.name)
+
             setText(`${parsedText.name} : `);
         }
     }, [data])
@@ -169,11 +170,14 @@ const Main = () => {
             {login ? <div className='logincard'>
 
                 <form onSubmit={loginFunc} className='text-cente' id='login-cont'>
-                    <h4 className='mb-3 text-dark'>Welcome To Chatting App</h4><hr />
+                    <h4 className='mb-3 text-dark'>Welcome To Chatting App</h4><hr className='text-dark'/>
                     <h5 className='text-dark'>Name</h5>
                     <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br />
                     <h5 className='text-dark'>Password</h5>
                     <input type='password' name='password' placeholder='Enter Code' value={password} required maxLength="6" onChange={(e) => setPassword(e.target.value)} className='login-text' /><br />
+                    <h5 className='text-dark'>Privacy code</h5>
+                    <input type='password' name='password' placeholder='Enter Code' value={priKey} required maxLength="4" onChange={(e) => setPriKey(e.target.value)} className='login-text' /><br />
+
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
             </div> : ""}
