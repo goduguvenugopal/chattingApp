@@ -100,7 +100,7 @@ const Main = () => {
         if (priKey === promptKey) {
             delByIdFunc(itemId)
         } else {
-            alert('wrong')
+            alert("You have Entered Wrong Code")
         }
 
 
