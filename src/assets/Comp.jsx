@@ -96,12 +96,12 @@ const Main = () => {
     }
     //  delete privacy function 
     const privacyFunc = (itemId) => {
-        const promptKey = prompt("Enter Your Privicy Code")
-        if (priKey === promptKey) {
+        // const promptKey = prompt("Enter Your Privicy Code")
+        // if (priKey === promptKey) {
             delByIdFunc(itemId)
-        } else {
-            alert("You have Entered Wrong Code")
-        }
+        // } else {
+            // alert("You have Entered Wrong Code")
+        // }
 
 
 
@@ -175,8 +175,8 @@ const Main = () => {
                     <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br />
                     <h5 className='text-dark'>Password</h5>
                     <input type='password' name='password' placeholder='Enter Code' value={password} required maxLength="6" onChange={(e) => setPassword(e.target.value)} className='login-text' /><br />
-                    <h5 className='text-dark'>Privacy code</h5>
-                    <input type='password' name='password' placeholder='Enter Code' value={priKey} required maxLength="4" onChange={(e) => setPriKey(e.target.value)} className='login-text' /><br />
+                    {/* <h5 className='text-dark'>Privacy code</h5>
+                    <input type='password' name='password' placeholder='Create Enter Code' value={priKey} required maxLength="4" onChange={(e) => setPriKey(e.target.value)} className='login-text' /><br /> */}
 
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
