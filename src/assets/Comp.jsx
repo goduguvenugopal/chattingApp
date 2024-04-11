@@ -113,7 +113,7 @@ const Main = () => {
 
     const alertFunc = () => {
         const promptData = prompt("Enter The Password to Delete Chat")
-        const DelKey = "121822"
+        const DelKey = "1862004"
         if (promptData === DelKey) {
             deleteFunc()
         }
