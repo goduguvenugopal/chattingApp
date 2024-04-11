@@ -73,14 +73,15 @@ const Main = () => {
 
     //    deletebyiduser medthod 
     const delByIdFunc = async (itemId) => {
+        alert(itemId)
         try {
-           const response =  await axios.delete(`https://vkzomato-server.onrender.com/employees/deluserbyid/${itemId}`)
+            const response = await axios.delete(`https://vkzomato-server.onrender.com/employees/deluserbyid/${itemId}`)
             if (response.status === 200) {
                 setData(data.filter(item => item.id !== itemId))
                 alert('Chat deleted successfully');
-            } 
-        } 
-        catch(error) {
+            }
+        }
+        catch (error) {
             console.log(error)
             alert('Try again or Check internet Connection')
         }
@@ -213,11 +214,15 @@ const Main = () => {
                     <span className="visually-hidden ">Loading...</span>
                 </div></div>) : <ul className='container mt-5 ul-card ' >
                     {data.length ? (
-                        data.map((item) => (
-                            <li className='list-text' key={item.id}>{item.text} <span style={{ cursor: 'pointer' }} onClick={()=> delByIdFunc(item.id)} className="material-symbols-outlined del-icon">
+                        data.map((item, index) => (<> 
+                            <li className='list-text' key={index}>{}{item.text}  <span style={{ cursor: 'pointer' }} onClick={() => {
+                                console.log(item)
+                                delByIdFunc(item.id)}} className="material-symbols-outlined del-icon">
                                 delete
-                            </span></li>
-                        ))
+                            </span>
+                             </li>
+                             <h4 className='time'>{item.createdAt}</h4>
+                            </>  ))
                     ) : (
                         <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>'Oops' Chat Cleared</div>
                     )}
