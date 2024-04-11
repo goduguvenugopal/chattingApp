@@ -199,7 +199,9 @@ const Main = () => {
                 </div></div>) : <ul className='container mt-5 ul-card ' >
                     {data.length ? (
                         data.map((item, index) => (
-                            <li className='list-text' key={index}>{item.text}</li>
+                            <li style={{cursor:'pointer'}} className='list-text' key={index}>{item.text} <span class="material-symbols-outlined">
+                            delete
+                            </span></li>
                         ))
                     ) : (
                         <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>'Oops' Chat Cleared</div>
