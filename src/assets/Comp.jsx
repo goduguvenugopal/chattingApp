@@ -96,13 +96,13 @@ const Main = () => {
     }
     //  delete privacy function 
     const privacyFunc = (itemId) => {
-        const promptkey = prompt("Enter Your Name")
-        if (promptkey === priKey) {
+         if (priKey === name) {
             delByIdFunc(itemId)
+        } else {
+            alert('wrong')
         }
-        else {
-            alert('You have Entered Wrong Code')
-        }
+
+
 
 
     }
