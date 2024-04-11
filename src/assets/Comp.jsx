@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../App.css'
 
 const Main = () => {
+    const [priKey, setPriKey] = useState("");
     const [del, setDel] = useState(false);
     const [dark, setDark] = useState(false);
     const [name, setName] = useState('');
@@ -93,6 +94,18 @@ const Main = () => {
 
 
     }
+    //  delete privacy function 
+    const privacyFunc = (itemId) => {
+        const promptkey = prompt("Enter Your Name")
+        if (promptkey === priKey) {
+            delByIdFunc(itemId)
+        }
+        else {
+            alert('You have Entered Wrong Code')
+        }
+
+
+    }
 
     // localStorage function 
     useEffect(() => {
@@ -102,6 +115,7 @@ const Main = () => {
             const parsedText = JSON.parse(text1);
             setName(parsedText.name)
             setPassword(parsedText.password)
+            setPriKey(parsedText.name)
             setText(`${parsedText.name} : `);
         }
     }, [data])
@@ -224,7 +238,7 @@ const Main = () => {
                         data.map((item, index) => (<>
                             <li className='list-text' key={index}>{index + 1}. {item.text}  <span style={{ cursor: 'pointer' }} onClick={() => {
                                 console.log(item)
-                                delByIdFunc(item._id)
+                                privacyFunc(item._id)
                             }} className="material-symbols-outlined del-icon">
                                 delete
                             </span>
