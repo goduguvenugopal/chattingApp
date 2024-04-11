@@ -73,14 +73,16 @@ const Main = () => {
 
     //    deletebyiduser medthod 
     const delByIdFunc = async (itemId) => {
-        if(confirm('Confirm To Delete The Chat')){
+
+
+        if (confirm('Confirm To Delete The Chat')) {
             try {
- 
+
 
                 const response = await axios.delete(`https://vkzomato-server.onrender.com/employees/deluserbyid/${itemId}`)
                 if (response.status === 200) {
-                    setData(data.filter(item => item.id !== itemId))
-                    alert('Chat deleted successfully');
+                    setData(data.filter(item => item._id !== itemId))
+
                 }
             }
             catch (error) {
@@ -88,8 +90,8 @@ const Main = () => {
                 alert('Try again or Check internet Connection')
             }
         }
-    
-       
+
+
     }
 
     // localStorage function 
@@ -219,15 +221,16 @@ const Main = () => {
                     <span className="visually-hidden ">Loading...</span>
                 </div></div>) : <ul className='container mt-5 ul-card ' >
                     {data.length ? (
-                        data.map((item, index) => (<> 
-                            <li className='list-text' key={index}>{}{item.text}  <span style={{ cursor: 'pointer' }} onClick={() => {
+                        data.map((item, index) => (<>
+                            <li className='list-text' key={index}>{index + 1}. {item.text}  <span style={{ cursor: 'pointer' }} onClick={() => {
                                 console.log(item)
-                                delByIdFunc(index + 1)}} className="material-symbols-outlined del-icon">
+                                delByIdFunc(item._id)
+                            }} className="material-symbols-outlined del-icon">
                                 delete
                             </span>
-                             </li>
-                             <h4 className='time'>{item.createdAt}</h4>
-                            </>  ))
+                            </li>
+                            <h4 className='time'>{item.createdAt}</h4>
+                        </>))
                     ) : (
                         <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>'Oops' Chat Cleared</div>
                     )}
