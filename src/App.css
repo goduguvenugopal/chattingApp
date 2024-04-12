@@ -1,14 +1,12 @@
-
-body{
-  background-color:rgb(235, 53, 177);
+body {
+  background-color: rgb(235, 53, 177);
   color: white;
 }
-
 
 #top-card {
   z-index: 1000;
   background-color: rgb(235, 53, 177);
- padding-bottom: 10px;
+  padding-bottom: 10px;
   box-shadow: 0 0 6px rgb(125, 122, 122);
 }
 .chatcard {
@@ -19,10 +17,10 @@ body{
 }
 
 .text-card {
-  text-transform:capitalize ;
+  text-transform: capitalize;
   height: 3rem;
   width: 16rem;
- 
+
   padding-left: 10px;
   margin-right: 5px;
   border-radius: 5px;
@@ -31,7 +29,6 @@ body{
 
 .chatlist {
   margin-bottom: 13rem;
-   
 }
 
 .fixed {
@@ -40,19 +37,19 @@ body{
   left: 0;
   width: 100vw;
 }
-.logincard{
+.logincard {
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width:100vw;
+  width: 100vw;
   position: fixed;
   background-color: rgb(66, 64, 66);
   z-index: 1;
- }
+}
 
- #login-cont{
+#login-cont {
   background-color: white;
   box-shadow: 0 0 8px rgb(54, 53, 53);
   padding: 10px;
@@ -61,50 +58,64 @@ body{
   padding-top: 1rem;
   width: 20rem;
   text-align: center;
-
- }
- .login-text{
+}
+.login-text {
   width: 16rem;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 10px;
   margin-right: 5px;
   border-radius: 5px;
-  text-transform:capitalize ;
+  text-transform: capitalize;
   border: 2px solid rgb(230, 11, 237);
   margin-bottom: 10px;
- }
+}
 
- #refresh{
+#refresh {
   position: fixed;
   right: 5px;
   bottom: 10.1rem;
- }
+}
 
- .list-text{
+.list-text {
   list-style: none;
   box-shadow: 0 0 6px rgb(154, 152, 152);
   padding: 10px;
-  margin-top: 15px;
-  background-color:white;
+  margin-top: 3px;
+  background-color: white;
   font-family: robot;
   border-radius: 10px;
   color: black;
   text-transform: capitalize;
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
+  cursor: pointer;
+   
+}
+.favdelthumb-card {
   
- }
+  display: flex;
+  justify-content: flex-end;
+   
+ height: 25px;
+  
+}
+.delfav-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: white;
+  width: 5rem;
+  padding: 3px;
+ 
+  
+}
 
- .list-text:hover{
-  box-shadow: 0 0 8px rgb(216, 17, 160);
- }
 
- .theme-card{
+.fav-icon-cart{
   position: fixed;
-  right: 3px;
-  background-color:black;
+  left: 3px;
+  background-color: white;
   border-radius: 50%;
   top: 10px;
   color: white;
@@ -113,28 +124,54 @@ body{
   align-items: center;
   justify-content: center;
   cursor: pointer;
- }
-
- .del-card{
- position: fixed;
- left: 5px;
- bottom: 10.1rem;
- 
-
- }
-
-.del-icon{
+}
+.fav-icon {
   font-size: 20px;
-  margin-top: 3px;
-  color: red;
 
+  color: red;
+  cursor: pointer;
+}
+.thumb-icon {
+  font-size: 20px;
+
+  color: rgb(4, 154, 36);
+  cursor: pointer;
+}
+.list-text:hover {
+  box-shadow: 0 0 8px rgb(216, 17, 160);
 }
 
- .del-icon:hover{
-color:blue ;
- }
+.theme-card {
+  position: fixed;
+  right: 3px;
+  background-color: black;
+  border-radius: 50%;
+  top: 10px;
+  color: white;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 
- .time{
+.del-card {
+  position: fixed;
+  left: 5px;
+  bottom: 10.1rem;
+}
+
+.del-icon {
+  font-size: 20px;
+  /* margin-top: 3px; */
+  color: red;
+}
+
+.del-icon:hover {
+  color: blue;
+}
+
+.time {
   position: relative;
   bottom: -2px;
   background-color: white;
@@ -145,7 +182,7 @@ color:blue ;
   padding-right: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
-  border-radius:4px;
-  
+  border-radius: 4px;
+
   z-index: -1;
- }
+}
