@@ -15,6 +15,9 @@ const Main = () => {
     const [login, setLogin] = useState(true)
     const [password, setPassword] = useState('')
     const [favor, setFavor] = useState([])
+    const [upUser, setUpUser] = useState([])
+
+    const [edit, setEdit] = useState("")
 
     // get data method 
     const getFunc = async () => {
@@ -170,6 +173,7 @@ const Main = () => {
             const response = await axios.get(`https://vkzomato-server.onrender.com/employees/getuserbyid/${userid}`)
 
             setFavor(response.data)
+            console.log(response.data)
 
             alert("This Message Added In Favorite Messages")
 
@@ -181,6 +185,20 @@ const Main = () => {
 
     }
 
+    // updateuserbyid function 
+
+
+    const updateById = async (update) => {
+
+        try {
+            const response = await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { edit })
+            setUpUser(response.data)
+           
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
 
 
     useEffect(() => {
@@ -266,39 +284,40 @@ const Main = () => {
                                 />
                             </div>
                             <div className="modal-body bg-dark">
-                                
-                                {loader ? (<div className=' bg-white  d-flex justify-content-center align-items-center' style={{height:'60vh'}} >
-                <div className=" spinner-border text-primary" role="status">
-                <span className="visually-hidden ">Loading...</span>
-            </div></div>) : <ul className='container mt-5 ul-card ' >
-                {favor.length ? (
-                    favor.map((item, index) => (<>
-                        <div className="favdelthumb-card">
-                            {fav ? "" : <div className="delfav-card">
-                                
-                                <span className="material-symbols-outlined thumb-icon">
-                                    thumb_up
-                                </span>
-                                <span style={{ cursor: 'pointer' }} onClick={() => {
-                                    console.log(item)
-                                    privacyFunc(item._id)
-                                }} className="material-symbols-outlined del-icon">
-                                    delete
-                                </span>
-                            </div>}
-                        </div>
 
-                        <li onClick={favFunc} className='list-text' key={index}>{index + 1}. {item.text}
+                                {loader ? (<div className=' bg-white  d-flex justify-content-center align-items-center' style={{ height: '60vh' }} >
+                                    <div className=" spinner-border text-primary" role="status">
+                                        <span className="visually-hidden ">Loading...</span>
+                                    </div></div>) : <ul className='container mt-5 ul-card ' >
+                                    {favor.length ? (
+                                        favor.map((item, index) => (<>
+                                            <div className="favdelthumb-card">
+                                                {fav ? "" : <div className="delfav-card">
 
-                        </li>
-                        <h4 className='time'>{item.createdAt}</h4>
-                    </>))
-                ) : (
-                    <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>No Favorite Messages</div>
-                )}
+                                                    <span className="material-symbols-outlined thumb-icon">
+                                                        thumb_up
+                                                    </span>
+
+                                                    <span style={{ cursor: 'pointer' }} onClick={() => {
+                                                        console.log(item)
+                                                        privacyFunc(item._id)
+                                                    }} className="material-symbols-outlined del-icon">
+                                                        delete
+                                                    </span>
+                                                </div>}
+                                            </div>
+
+                                            <li onClick={favFunc} className='list-text' key={index}>{index + 1}. {item.text}
+
+                                            </li>
+                                            <h4 className='time'>{item.createdAt}</h4>
+                                        </>))
+                                    ) : (
+                                        <div style={{ height: "50vh" }} className='d-flex justify-content-center align-items-center  mt-5 fs-4'>No Favorite Messages</div>
+                                    )}
 
 
-            </ul>}
+                                </ul>}
 
                             </div>
                             <div className="modal-footer">
@@ -352,6 +371,9 @@ const Main = () => {
                                     <span onClick={() => getUserById(item._id)} className="material-symbols-outlined fav-icon">
                                         favorite
                                     </span>
+                                    <span onClick={() => updateById(item._id)} class="material-symbols-outlined edit-icon" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                        edit
+                                    </span>
                                     <span className="material-symbols-outlined thumb-icon">
                                         thumb_up
                                     </span>
@@ -362,6 +384,34 @@ const Main = () => {
                                         delete
                                     </span>
                                 </div>}
+                            </div>
+
+                            {/* Modal  */}
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabe" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-dark d-flex justify-content-center align-items-center " id="exampleModalLabel">
+                                                <span class="material-symbols-outlined edit-icon" style={{ marginRight: "3px" }} >
+                                                    edit
+                                                </span>
+                                                Edit
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <input type='text' placeholder='Edit Message' value={`${upUser.text}`} className='form-control' />
+                                                <input type='text' name='edit' placeholder='Edit Message' value={edit} className='form-control' />
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Send</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <li onClick={favFunc} className='list-text' key={index}>{index + 1}. {item.text}
