@@ -186,13 +186,13 @@ const Main = () => {
 
 
 
-    const ediText = { text: edit };
+   
 
 
     const updateById = async (update) => {
 
         try {
-            const response = await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { text: ediText.text })
+            const response = await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { text: edit })
             setModal(false)
 
             getFunc()
