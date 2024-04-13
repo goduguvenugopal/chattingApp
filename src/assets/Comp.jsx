@@ -7,7 +7,7 @@ const Main = () => {
     const [del, setDel] = useState(false);
     const [dark, setDark] = useState(false);
     const [name, setName] = useState('');
-    const [text, setText] = useState(" ");
+    const [text, setText] = useState("");
     const [pop, setPop] = useState(false);
     const [pop1, setPop1] = useState(false);
     const [loader, setLoader] = useState(false);
@@ -16,8 +16,9 @@ const Main = () => {
     const [password, setPassword] = useState('')
     const [favor, setFavor] = useState([])
     const [upUser, setUpUser] = useState([])
+    const [modal, setModal] = useState(false)
 
-    const [edit, setEdit] = useState("")
+    const [edit, setEdit] = useState(upUser)
 
     // get data method 
     const getFunc = async () => {
@@ -111,14 +112,16 @@ const Main = () => {
 
     // localStorage function 
     useEffect(() => {
+
         const text1 = localStorage.getItem("text");
 
         if (text1) {
             const parsedText = JSON.parse(text1);
             setName(parsedText.name)
             setPassword(parsedText.password)
-
+            setEdit(`${parsedText.name} : `)
             setText(`${parsedText.name} : `);
+
         }
     }, [data])
 
@@ -187,13 +190,26 @@ const Main = () => {
 
     // updateuserbyid function 
 
+    const updateByIdFunc = (e) => {
+       e.preventDefault()
+       
+
+    }
+
+
+    const reFunc = (user) =>{
+        updateById(user)
+        setModal(false)
+    }
 
     const updateById = async (update) => {
 
         try {
             const response = await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { edit })
             setUpUser(response.data)
+
            
+
         }
         catch (error) {
             console.log(error)
@@ -371,48 +387,58 @@ const Main = () => {
                                     <span onClick={() => getUserById(item._id)} className="material-symbols-outlined fav-icon">
                                         favorite
                                     </span>
-                                    <span onClick={() => updateById(item._id)} class="material-symbols-outlined edit-icon" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                    <span onClick={() => { updateById(item._id), setModal(true) }} class="material-symbols-outlined edit-icon"  >
                                         edit
                                     </span>
                                     <span className="material-symbols-outlined thumb-icon">
                                         thumb_up
                                     </span>
-                                    <span style={{ cursor: 'pointer' }} onClick={() => {
-
-                                        privacyFunc(item._id)
-                                    }} className="material-symbols-outlined del-icon">
+                                    <span style={{ cursor: 'pointer' }} onClick={() => privacyFunc(item._id)
+                                    } className="material-symbols-outlined del-icon">
                                         delete
                                     </span>
                                 </div>}
                             </div>
 
                             {/* Modal  */}
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabe" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-dark d-flex justify-content-center align-items-center " id="exampleModalLabel">
-                                                <span class="material-symbols-outlined edit-icon" style={{ marginRight: "3px" }} >
-                                                    edit
-                                                </span>
-                                                Edit
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <input type='text' placeholder='Edit Message' value={`${upUser.text}`} className='form-control' />
-                                                <input type='text' name='edit' placeholder='Edit Message' value={edit} className='form-control' />
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Send</button>
-                                                </div>
-                                            </form>
-                                        </div>
+
+                            {modal ? <div className='form-modal'>
+                                <form   onSubmit={updateByIdFunc} className='container form-modal-card'>
+                                    <h5 className='text-dark d-flex align-items-center'> <span class="material-symbols-outlined edit-icon" style={{ marginRight: "3px" }}>
+                                        edit
+                                    </span>Edit</h5>
+                                    <hr className='text-dark' />
+                                    <input
+
+                                        type="text"
+                                        name="edit"
+                                        placeholder="Edit Message"
+
+                                        value={upUser.text} className='form-control mb-3'
+
+                                    />
+                                    <input
+                                        style={{ textTransform: 'capitalize' }}
+                                        className='form-control'
+                                        type="text"
+                                        value={edit}
+
+                                        onChange={(e) => setEdit(e.target.value)}
+                                        placeholder="Edit Message"
+
+
+                                    />
+                                    <hr className='text-dark' />
+                                    <div className="mt-2 d-flex justify-content-end">
+                                        
+                                        <button type="submit" className="btn btn-primary" onClick={()=> reFunc(item._id)}>
+                                            Send
+                                        </button>
 
                                     </div>
-                                </div>
-                            </div>
+                                </form>
+                            </div> : ""}
+
 
                             <li onClick={favFunc} className='list-text' key={index}>{index + 1}. {item.text}
 

@@ -192,3 +192,29 @@ body {
 
   z-index: -1;
 }
+
+.form-modal{
+  position: fixed;
+  /* background-color: black; */
+  opacity: 0.9;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 80vh;
+}
+
+.form-modal-card{
+  background-color: white;
+  
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  /* box-shadow: 0 0 6px rgb(196, 189, 189); */
+}
