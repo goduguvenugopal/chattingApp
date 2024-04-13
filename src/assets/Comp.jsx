@@ -98,14 +98,9 @@ const Main = () => {
 
 
     }
-    //  delete privacy function 
+
     const privacyFunc = (itemId) => {
-        // const promptKey = prompt("Enter Your Privicy Code")
-        // if (priKey === promptKey) {
         delByIdFunc(itemId)
-        // } else {
-        // alert("You have Entered Wrong Code")
-        // }
     }
 
     // localStorage function 
@@ -167,6 +162,7 @@ const Main = () => {
     }
 
 
+
     // getuserbyid function
     const getUserById = async (userid) => {
 
@@ -190,14 +186,15 @@ const Main = () => {
 
 
 
+    const ediText = { text: edit };
 
-    const ediText = { text: edit }
 
     const updateById = async (update) => {
 
         try {
-           const response =  await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { ediText })
+            const response = await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { text: ediText.text })
             setModal(false)
+
             getFunc()
             console.log(response.data)
 
@@ -421,11 +418,11 @@ const Main = () => {
                                     />
                                     <hr className='text-white' />
                                     <div className="mt-2 d-flex justify-content-end">
-                                    <button style={{ marginRight: "7px" }}  className="btn bg-white" onClick={()=>setModal(false)}>
+                                        <button style={{ marginRight: "7px" }} className="btn bg-white" onClick={() => setModal(false)}>
                                             Close
                                         </button>
 
-                                        <button  className="btn btn-primary" onClick={() => { updateById(item._id) }}>
+                                        <button className="btn btn-primary" onClick={() => { updateById(item._id) }}>
                                             Send
                                         </button>
 
