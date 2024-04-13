@@ -15,10 +15,8 @@ const Main = () => {
     const [login, setLogin] = useState(true)
     const [password, setPassword] = useState('')
     const [favor, setFavor] = useState([])
-    const [upUser, setUpUser] = useState([])
     const [modal, setModal] = useState(false)
-
-    const [edit, setEdit] = useState(upUser)
+    const [edit, setEdit] = useState("")
 
     // get data method 
     const getFunc = async () => {
@@ -190,25 +188,18 @@ const Main = () => {
 
     // updateuserbyid function 
 
-    const updateByIdFunc = (e) => {
-       e.preventDefault()
-       
-
-    }
 
 
-    const reFunc = (user) =>{
-        updateById(user)
-        setModal(false)
-    }
+
+    const ediText = { text: edit }
 
     const updateById = async (update) => {
 
         try {
-            const response = await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { edit })
-            setUpUser(response.data)
-
-           
+           const response =  await axios.put(`https://vkzomato-server.onrender.com/employees/updateuserbyid/${update}`, { ediText })
+            setModal(false)
+            getFunc()
+            console.log(response.data)
 
         }
         catch (error) {
@@ -387,7 +378,7 @@ const Main = () => {
                                     <span onClick={() => getUserById(item._id)} className="material-symbols-outlined fav-icon">
                                         favorite
                                     </span>
-                                    <span onClick={() => { updateById(item._id), setModal(true) }} class="material-symbols-outlined edit-icon"  >
+                                    <span onClick={() => setModal(true)} class="material-symbols-outlined edit-icon"  >
                                         edit
                                     </span>
                                     <span className="material-symbols-outlined thumb-icon">
@@ -403,12 +394,12 @@ const Main = () => {
                             {/* Modal  */}
 
                             {modal ? <div className='form-modal'>
-                                <form   onSubmit={updateByIdFunc} className='container form-modal-card'>
-                                    <h5 className='text-dark d-flex align-items-center'> <span class="material-symbols-outlined edit-icon" style={{ marginRight: "3px" }}>
+                                <div className='container form-modal-card'>
+                                    <h5 className=' d-flex align-items-center'> <span class="material-symbols-outlined edit-icon text-white" style={{ marginRight: "3px" }}>
                                         edit
                                     </span>Edit</h5>
-                                    <hr className='text-dark' />
-                                    <input
+                                    <hr className='text-white' />
+                                    {/* <input
 
                                         type="text"
                                         name="edit"
@@ -416,7 +407,7 @@ const Main = () => {
 
                                         value={upUser.text} className='form-control mb-3'
 
-                                    />
+                                    /> */}
                                     <input
                                         style={{ textTransform: 'capitalize' }}
                                         className='form-control'
@@ -428,15 +419,18 @@ const Main = () => {
 
 
                                     />
-                                    <hr className='text-dark' />
+                                    <hr className='text-white' />
                                     <div className="mt-2 d-flex justify-content-end">
-                                        
-                                        <button type="submit" className="btn btn-primary" onClick={()=> reFunc(item._id)}>
+                                    <button style={{ marginRight: "7px" }}  className="btn bg-white" onClick={()=>setModal(false)}>
+                                            Close
+                                        </button>
+
+                                        <button  className="btn btn-primary" onClick={() => { updateById(item._id) }}>
                                             Send
                                         </button>
 
                                     </div>
-                                </form>
+                                </div>
                             </div> : ""}
 
 

@@ -195,8 +195,8 @@ body {
 
 .form-modal{
   position: fixed;
-  /* background-color: black; */
-  opacity: 0.9;
+ 
+  /* background-color: white; */
   left: 0;
   top: 0;
   display: flex;
@@ -207,7 +207,7 @@ body {
 }
 
 .form-modal-card{
-  background-color: white;
+  background-color: rgb(27, 25, 25);
   
   width: 20rem;
   display: flex;
