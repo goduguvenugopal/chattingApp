@@ -17,6 +17,7 @@ const Main = () => {
     const [favor, setFavor] = useState([])
     const [modal, setModal] = useState(false)
     const [edit, setEdit] = useState("")
+    const [image, setImage] = useState(null)
 
     // get data method 
     const getFunc = async () => {
@@ -35,12 +36,26 @@ const Main = () => {
 
     }
 
+
+
+    const changeFunc = (event) =>{
+        setImage(event.target.files[0])
+    }
+
+    const formData = new FormData()
+    formData.append("image" , image)
+    formData.append("text", text)
+
     // post data method 
     const formFunc = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", { text });
+            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", formData,{
+                headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            });
 
             setText("")
             setPop(true)
@@ -186,7 +201,7 @@ const Main = () => {
 
 
 
-   
+
 
 
     const updateById = async (update) => {
@@ -209,6 +224,8 @@ const Main = () => {
 
         getFunc()
     }, [])
+
+
     return (
         <>
             {login ? <div className='logincard'>
@@ -242,6 +259,15 @@ const Main = () => {
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
                             />
+
+                            <div className='imgFile'>
+                                <label htmlFor="file"><span class="material-symbols-outlined text-dark">
+                                    photo_camera
+                                </span></label>
+                                <input type='file' id='file' className='fileInput'  onChange={changeFunc} />
+                            </div>
+
+
                             <button type='submit' className='text-white fw-bold btn bg-primary ' style={{ height: "2.8rem", marginTop: '1px' }}>Send</button>
                         </form>
 

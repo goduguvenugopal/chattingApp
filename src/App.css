@@ -218,3 +218,18 @@ body {
   border: 2px solid black;
   /* box-shadow: 0 0 6px rgb(196, 189, 189); */
 }
+
+
+.imgFile{
+  position: relative;
+  right: 2.5rem;
+  top: 0.8rem;
+  cursor: pointer;
+  
+
+}
+
+.fileInput{
+  display: none;
+
+}
