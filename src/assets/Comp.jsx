@@ -44,19 +44,19 @@ const Main = () => {
 
     const formData = new FormData()
     formData.append("image" , image)
-    formData.append("text", text)
+
+    
+
+     
+  
 
     // post data method 
     const formFunc = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", formData,{
-                headers : {
-                    'Content-Type' : 'multipart/form-data'
-                }
-            });
-
+            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", {text});
+          
             setText("")
             setPop(true)
             getFunc()
@@ -71,6 +71,16 @@ const Main = () => {
             setPop1(true)
 
             console.error(error);
+        }
+
+
+        try{
+            await axios.post("https://image-server-hvo6.onrender.com/upload", formData , {
+            headers : { "Content-Type" : "multipart/form-data"}
+            })
+        }catch(error){
+            console.log(error)
+            alert("try again image Has Not Sent")
         }
     };
 
@@ -264,7 +274,7 @@ const Main = () => {
                                 <label htmlFor="file"><span class="material-symbols-outlined text-dark">
                                     photo_camera
                                 </span></label>
-                                <input type='file' id='file' className='fileInput'  onChange={changeFunc} />
+                                <input type='file' accept='image/*' id='file' className='fileInput'  onChange={changeFunc} />
                             </div>
 
 
