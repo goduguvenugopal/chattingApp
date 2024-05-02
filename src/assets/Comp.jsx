@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css'
+import Images from './Images';
 
 const Main = () => {
     const [fav, setFav] = useState(true);
@@ -18,6 +19,8 @@ const Main = () => {
     const [modal, setModal] = useState(false)
     const [edit, setEdit] = useState("")
     const [image, setImage] = useState(null)
+    const [preview , setPreview] = useState([])
+   
 
     // get data method 
     const getFunc = async () => {
@@ -33,6 +36,18 @@ const Main = () => {
             console.log(error)
 
         }
+        try {
+            const response = await axios.get("https://image-server-hvo6.onrender.com/get-images")
+          setPreview(response.data.data)
+
+            setLoader(false)
+        }
+        catch (error) {
+            alert('Refresh again or Check internet Connection')
+            console.log(error)
+
+        }
+
 
     }
 
@@ -478,6 +493,10 @@ const Main = () => {
 
 
                 </ul>}
+
+                
+                    <Images images = {preview}/>
+                
             </div>
         </>
     );
