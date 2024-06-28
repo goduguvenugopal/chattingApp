@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css'
-import Images from './Images';
+
 
 const Main = () => {
     const [fav, setFav] = useState(true);
@@ -18,9 +18,9 @@ const Main = () => {
     const [favor, setFavor] = useState([])
     const [modal, setModal] = useState(false)
     const [edit, setEdit] = useState("")
-    const [image, setImage] = useState(null)
-    const [preview , setPreview] = useState([])
-   
+
+
+
 
     // get data method 
     const getFunc = async () => {
@@ -36,42 +36,18 @@ const Main = () => {
             console.log(error)
 
         }
-        try {
-            const response = await axios.get("https://image-server-hvo6.onrender.com/get-images")
-          setPreview(response.data.data)
-
-            setLoader(false)
-        }
-        catch (error) {
-            alert('Refresh again or Check internet Connection')
-            console.log(error)
-
-        }
 
 
     }
 
-
-
-    const changeFunc = (event) =>{
-        setImage(event.target.files[0])
-    }
-
-    const formData = new FormData()
-    formData.append("image" , image)
-
-    
-
-     
-  
 
     // post data method 
     const formFunc = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", {text});
-          
+            await axios.post("https://vkzomato-server.onrender.com/employees/add-user", { text });
+
             setText("")
             setPop(true)
             getFunc()
@@ -89,14 +65,7 @@ const Main = () => {
         }
 
 
-        try{
-            await axios.post("https://image-server-hvo6.onrender.com/upload", formData , {
-            headers : { "Content-Type" : "multipart/form-data"}
-            })
-        }catch(error){
-            console.log(error)
-            alert("try again image Has Not Sent")
-        }
+
     };
 
     //  delete data method 
@@ -165,7 +134,7 @@ const Main = () => {
         localStorage.setItem("text", JSON.stringify({ name: name, password: password }))
 
 
-        const defaultPass = "asdfgh"
+        const defaultPass = "1234"
         if (password === defaultPass) {
             setLogin(false)
         }
@@ -188,7 +157,7 @@ const Main = () => {
 
     const alertFunc = () => {
         const promptData = prompt("Enter The Password to Delete Chat")
-        const DelKey = "1862004"
+        const DelKey = "1234"
         if (promptData === DelKey) {
             deleteFunc()
         }
@@ -222,12 +191,7 @@ const Main = () => {
 
     }
 
-    // updateuserbyid function 
-
-
-
-
-
+    // updateuserbyid function
 
     const updateById = async (update) => {
 
@@ -260,9 +224,7 @@ const Main = () => {
                     <h5 className='text-dark'>Name</h5>
                     <input placeholder='Enter Your Name' required value={name} type='text' onChange={(e) => setName(e.target.value)} className='login-text' /><br />
                     <h5 className='text-dark'>Password</h5>
-                    <input type='password' name='password' placeholder='Enter Code' value={password} required maxLength="6" onChange={(e) => setPassword(e.target.value)} className='login-text' /><br />
-                    {/* <h5 className='text-dark'>Privacy code</h5>
-                    <input type='password' name='password' placeholder='Create Enter Code' value={priKey} required maxLength="4" onChange={(e) => setPriKey(e.target.value)} className='login-text' /><br /> */}
+                    <input type='password' name='password' placeholder='1234' value={password} required maxLength="6" onChange={(e) => setPassword(e.target.value)} className='login-text' /><br />
 
                     <button type='submit' className='btn bg-primary text-white'>Log in</button>
                 </form>
@@ -289,7 +251,7 @@ const Main = () => {
                                 <label htmlFor="file"><span class="material-symbols-outlined text-dark">
                                     photo_camera
                                 </span></label>
-                                <input type='file' accept='image/*' id='file' className='fileInput'  onChange={changeFunc} />
+                                <input type='file' accept='image/*' id='file' className='fileInput' />
                             </div>
 
 
@@ -447,15 +409,7 @@ const Main = () => {
                                         edit
                                     </span>Edit</h5>
                                     <hr className='text-white' />
-                                    {/* <input
-
-                                        type="text"
-                                        name="edit"
-                                        placeholder="Edit Message"
-
-                                        value={upUser.text} className='form-control mb-3'
-
-                                    /> */}
+                                    
                                     <input
                                         style={{ textTransform: 'capitalize' }}
                                         className='form-control'
@@ -494,9 +448,9 @@ const Main = () => {
 
                 </ul>}
 
-                
-                    <Images images = {preview}/>
-                
+
+
+
             </div>
         </>
     );
